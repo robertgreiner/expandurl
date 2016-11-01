@@ -31,3 +31,15 @@ func TestShouldNotReturnErrorOnValidUrl(t *testing.T) {
 		t.Error("Should not have thrown error on valid URL")
 	}
 }
+
+func TestShouldDecodeEscapedCharacters(t *testing.T) {
+	result, err := Expand("http:%2F%2Fbit.ly%2F2eXwN8A")
+
+	if err != nil {
+		t.Error("Should have successfully expanded URL with escaped characters")
+	}
+
+	if result != "http://robertgreiner.com/" {
+		t.Error("Returned incorrect URL")
+	}
+}
